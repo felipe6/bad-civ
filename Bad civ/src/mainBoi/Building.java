@@ -1,3 +1,4 @@
+package mainBoi;
 import java.awt.Graphics;
 
 public class Building extends GameObject{

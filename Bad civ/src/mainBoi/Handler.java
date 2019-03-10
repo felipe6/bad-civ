@@ -1,3 +1,4 @@
+package mainBoi;
 import java.util.LinkedList;
 import java.awt.Graphics;
 

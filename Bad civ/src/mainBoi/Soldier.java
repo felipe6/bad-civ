@@ -1,3 +1,4 @@
+package mainBoi;
 import java.awt.Color;
 import java.awt.Graphics;
 
