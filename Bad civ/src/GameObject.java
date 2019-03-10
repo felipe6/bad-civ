@@ -14,12 +14,14 @@ public abstract class GameObject{
     public abstract void render(Graphics g);
 
     public void setX(int x){
-        if(x > Game.WIDTH || x < 0){
-            System.out.println("Out of Bounds");
+        if(x > Game.WIDTH - 32 || x < 0){
+            x = Game.WIDTH - 32;
+            System.out.println("Out of Bounds: " + x);
         }else{
             this.x = x;
         }
     }
+    
     public void setY(int y){
         if(y > Game.HEIGHT || y < 0){
             System.out.println("Out of Bounds");

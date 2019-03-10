@@ -8,11 +8,12 @@ public class Soldier extends GameObject{
     }
 
     public void tick(){
-
+    	setX(x+5);
     }
     
     public void render(Graphics g){
         g.setColor(Color.red);
+        System.out.println(x);
         g.fillRect(x, y, 32, 32);
     }
 }

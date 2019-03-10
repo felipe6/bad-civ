@@ -16,8 +16,8 @@ public class Game extends Canvas implements Runnable{
     public Game(){
     	System.out.println("yolo");
         handler = new Handler();
-        new Window(WIDTH, HEIGHT, "Bad Civ", this);
         handler.addObject(new Soldier(100, 100, ID.Player));
+        new Window(WIDTH, HEIGHT, "Bad Civ", this);
     }
 
     public static void main(String[] args) {
