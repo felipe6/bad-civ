@@ -1,6 +1,7 @@
-package Rendering;
+package Rendering.textures;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,8 +25,10 @@ public class Texture{
 			manager.addReference();
 		}else {
 			try {
-				manager = new TextureManager(ImageIO.read(new File("./resources/textures" + fileName + ".png")));
+				manager = new TextureManager(ImageIO.read(new File("./resources/textures/" + fileName + ".png")));
+				texMap.put(fileName, manager);
 			} catch (IOException e) {
+				System.out.println(e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -38,7 +41,11 @@ public class Texture{
 		super.finalize();
 	}
 	
-	protected void render(Graphics g, double x, double y) {
+	public void render(Graphics g, double x, double y) {
 		g.drawImage(manager.getImage(), (int) x, (int) y, null);
+	}
+	
+	public BufferedImage getImage() {
+		return manager.getImage();
 	}
 }

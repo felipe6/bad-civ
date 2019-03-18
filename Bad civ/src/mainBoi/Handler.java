@@ -1,9 +1,13 @@
 package mainBoi;
 import java.util.LinkedList;
+
+import mapStuff.BaseMap;
+
 import java.awt.Graphics;
 
 public class Handler{
     LinkedList<GameObject> object = new LinkedList<GameObject>();
+    BaseMap map;
 
     public void tick(){
         for(int i = 0; i < object.size(); i++){
@@ -14,11 +18,16 @@ public class Handler{
     }
     
     public void render(Graphics g){
+    	map.render(g);
         for(int i = 0; i < object.size(); i++){
             GameObject temp = object.get(i);
 
             temp.render(g);
         }
+    }
+    
+    public void setMap(BaseMap map) {
+    	this.map = map;
     }
 
     public void addObject(GameObject object){
