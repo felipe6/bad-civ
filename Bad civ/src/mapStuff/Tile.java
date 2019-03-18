@@ -10,9 +10,11 @@ import mainBoi.Soldier;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Tile extends GameObject {
+import Rendering.textures.Sprite;
 
-	public Tile(int x, int y, ID id, Building b, LinkedList<Soldier> soldiers) {
+public class Tile extends GameObject {
+		
+	public Tile(int x, int y, ID id) {
 		
 		super(x, y, id);
 		
@@ -26,8 +28,6 @@ public class Tile extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		id.image.render(g, x, y);
 	}
-	
 }

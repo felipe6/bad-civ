@@ -4,20 +4,27 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.image.BufferStrategy;
 
+import Rendering.textures.SpriteSheet;
+import Rendering.textures.Texture;
+import mapStuff.*;
+
 public class Game extends Canvas implements Runnable{
     
     private static final long serialVersionUID = 2L;
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 10;
 
     private Thread thread;
     private boolean running = false;
+    private BaseMap map;
 
     private Handler handler;
 
     public Game(){
     	System.out.println("yolo");
         handler = new Handler();
-        handler.addObject(new Soldier(100, 100, ID.Player));
+        //handler.addObject(new Tile(100, 100, ID.LandTile));
+        map = new BoringMap(8);
+        handler.setMap(map);
         new Window(WIDTH, HEIGHT, "Bad Civ", this);
     }
 
@@ -91,7 +98,7 @@ public class Game extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         g.setColor(Color.green);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
+        
         handler.render(g);
 
         g.dispose();

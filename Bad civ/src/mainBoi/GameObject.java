@@ -1,11 +1,11 @@
 package mainBoi;
 import java.awt.Graphics;
-public abstract class GameObject{
+public abstract class GameObject {
     
     public int x, y;
     public ID id;
     
-    public GameObject(int x, int y, ID id){
+    public GameObject(int x, int y, ID id) {
         this.x = x;
         this.y = y;
         this.id = id;
@@ -15,18 +15,16 @@ public abstract class GameObject{
     public abstract void render(Graphics g);
 
     public void setX(int x){
-        if(x > Game.WIDTH - 32 || x < 0){
+        if(x > Game.WIDTH - 32 || x < 0) {
             x = Game.WIDTH - 32;
-            System.out.println("Out of Bounds: " + x);
-        }else{
+        } else {
             this.x = x;
         }
     }
     
     public void setY(int y){
-        if(y > Game.HEIGHT || y < 0){
-            System.out.println("Out of Bounds");
-        }else{
+        if(y > Game.HEIGHT || y < 0) {
+        } else {
             this.y = y;
         }
     }
