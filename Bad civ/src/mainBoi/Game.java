@@ -22,7 +22,6 @@ public class Game extends Canvas implements Runnable{
     public Game(){
     	System.out.println("yolo");
         handler = new Handler();
-        //handler.addObject(new Tile(100, 100, ID.LandTile));
         map = new BoringMap(8);
         handler.setMap(map);
         new Window(WIDTH, HEIGHT, "Bad Civ", this);
@@ -96,7 +95,7 @@ public class Game extends Canvas implements Runnable{
         }
 
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.green);
+        g.setColor(Color.GRAY);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
         handler.render(g);

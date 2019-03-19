@@ -4,9 +4,9 @@ import Rendering.textures.SpriteSheet;
 
 public enum ID{
 	
-	LandTile (Ssheets.TILES, 1, 1),
-	WaterTile (Ssheets.TILES, 2, 1),
-	ForestTile (Ssheets.TILES, 1, 4),
+	LandTile (Ssheets.TILES, 2, 1),
+	WaterTile (Ssheets.TILES, 1, 2),
+	ForestTile (Ssheets.TILES, 4, 1),
 	Player(),
     Enemy(),;
 	
