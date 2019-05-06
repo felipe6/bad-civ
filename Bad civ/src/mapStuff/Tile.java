@@ -16,7 +16,7 @@ public class Tile extends GameObject {
 		
 	public Tile(int x, int y, ID id) {
 		
-		super(x, y, id);
+		super(x, y, id, false);
 		
 	}
 

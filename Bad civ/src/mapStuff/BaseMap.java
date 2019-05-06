@@ -8,7 +8,7 @@ import mainBoi.ID;
 
 public abstract class BaseMap{
 
-	private Tile[][] tiles;
+	public Tile[][] tiles;
 	public int gridSize;
 	private final int yOffSet = 15;
 	private final int xOffSet = 8;
@@ -40,5 +40,4 @@ public abstract class BaseMap{
 
     	tiles[x][y] = new Tile(((x) * (64 - xOffSet)) + wallDx + ((y % 2) * t), ((y) * (64 - yOffSet)) + wallDy, id);
     }
-	
 }

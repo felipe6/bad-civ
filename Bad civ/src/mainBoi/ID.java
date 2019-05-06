@@ -7,7 +7,7 @@ public enum ID{
 	LandTile (Ssheets.TILES, 2, 1),
 	WaterTile (Ssheets.TILES, 1, 2),
 	ForestTile (Ssheets.TILES, 4, 1),
-	Player(),
+	Soldier(Ssheets.BOIS, 1, 1),
     Enemy(),;
 	
 	public final Sprite image;

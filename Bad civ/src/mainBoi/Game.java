@@ -6,29 +6,47 @@ import java.awt.image.BufferStrategy;
 
 import Rendering.textures.SpriteSheet;
 import Rendering.textures.Texture;
+import input.KeyInput;
+import input.MouseInput;
 import mapStuff.*;
 
 public class Game extends Canvas implements Runnable{
     
     private static final long serialVersionUID = 2L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 10;
+    public static final String title = "Bad civ";
 
     private Thread thread;
-    private boolean running = false;
+    public boolean running = false;
     private BaseMap map;
 
-    private Handler handler;
+    private Menu menu;
+    private int state;
+    
+    public static Handler handler;
+    //public NetworkStuff connect;
+    
+    public static Game instance;
+    public static Window window;
 
     public Game(){
-    	System.out.println("yolo");
         handler = new Handler();
         map = new BoringMap(8);
         handler.setMap(map);
-        new Window(WIDTH, HEIGHT, "Bad Civ", this);
+        Soldier mans = new Soldier(2, 2, ID.Soldier);
+        handler.addObject(mans);
+        //connect = new NetworkStuff();
+        menu = new Menu();
+        state = 0;
+        window = new Window(WIDTH, HEIGHT, "Bad Civ", this);
+        addKeyListener(new KeyInput());
+        MouseInput mi = new MouseInput();
+        addMouseListener(mi);
+        addMouseMotionListener(mi);
     }
 
     public static void main(String[] args) {
-        new Game();
+        instance = new Game();
     }
 
     public synchronized void start(){
@@ -64,6 +82,12 @@ public class Game extends Canvas implements Runnable{
             lastTime = now;
             if(delta >= 1){
                 tick();
+                /*
+                if (!connect.accepted) {
+                	connect.listenForSeverRequest();
+                }*/
+                KeyInput.update();
+                MouseInput.update();
                 delta--;
                 canRender = true;
             }else canRender = false;
@@ -75,7 +99,7 @@ public class Game extends Canvas implements Runnable{
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                System.out.println("FPS: " + frames);
+                //System.out.println("FPS: " + frames);
                 frames = 0;
             }
         }
@@ -84,7 +108,17 @@ public class Game extends Canvas implements Runnable{
     }
 
     private void tick(){
-        handler.tick();
+    	
+        /////////////////////// States to tick
+        switch (state) {
+        case 0:
+        	menu.tick();
+        	break;
+        case 1:
+        	handler.tick();
+            break;
+        }
+        ///////////////////////
     }
 
     private void render(){
@@ -98,9 +132,24 @@ public class Game extends Canvas implements Runnable{
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
-        handler.render(g);
-
+        /////////////////////// States to render
+        switch (state) {
+        case 0:
+        	menu.render(g);
+        	break;
+        case 1:
+        	g.setColor(Color.GRAY);
+            g.fillRect(0, 0, WIDTH, HEIGHT);
+            handler.render(g);
+            break;
+        }
+        ///////////////////////
+        
         g.dispose();
         bs.show();
+    }
+    
+    public void setState(int newState) {
+    	this.state = newState;
     }
 }

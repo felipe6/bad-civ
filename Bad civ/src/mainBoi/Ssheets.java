@@ -5,7 +5,8 @@ import Rendering.textures.Texture;
 
 public enum Ssheets {
 
-	TILES("tilesheetTrans", 64);
+	TILES("tilesheetTrans", 64),
+	BOIS("Bois", 64);
 	
 	private final SpriteSheet sheet;
 	

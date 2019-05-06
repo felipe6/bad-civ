@@ -1,15 +1,30 @@
 package mainBoi;
 import java.awt.Graphics;
+import mapStuff.BaseMap;
+import mapStuff.Tile;
 public abstract class GameObject {
     
     public int x, y;
+    public int homeX, homeY;
+    public Tile home;
     public ID id;
     
-    public GameObject(int x, int y, ID id) {
-        this.x = x;
-        this.y = y;
-        this.id = id;
+    public GameObject(int x, int y, ID id, boolean TileCord) {
+    	if (TileCord) {
+    		this.home = Game.handler.map.tiles[x][y];
+    		this.homeX = x;
+    		this.homeY = y;
+            this.x = home.x;
+            this.y = home.y;
+            this.id = id;
+    	} else {
+    		this.x = x;
+    		this.y = y;
+    		this.id = id;
+    	}
     }
+    
+    
 
     public abstract void tick();
     public abstract void render(Graphics g);
@@ -20,6 +35,40 @@ public abstract class GameObject {
         } else {
             this.x = x;
         }
+    }
+    
+    public void setHome(int TileX, int TileY) {
+    	
+		this.home = Game.handler.map.tiles[TileX][TileY];
+		this.homeX = TileX;
+		this.homeY = TileY;
+		MoveToHome();
+    }
+    
+    public void MoveToHome () {
+    	x = home.x;
+    	y = home.y;
+    }
+    
+    public int[] findHome(int x, int y) {
+    	//This chords adjustment is because the tile x,y chords are on the top left corner. I want
+    	//to click on the middle so I have to change the chords
+    	x -= 30;
+    	y -= 30;
+    	Tile[][] mapTiles = Game.handler.map.tiles;
+    	int newHomeX = 0, newHomeY = 0;
+    	int sDistance = 100;
+    	for (int i = 0; i < mapTiles.length; i++) {
+    		for (int t = 0; t < mapTiles[i].length; t++) {
+    			int distance = Math.abs(mapTiles[i][t].x - x) + Math.abs(mapTiles[i][t].y - y);
+    			if (distance < sDistance) {
+    				sDistance = distance;
+    				newHomeX = i;
+    				newHomeY = t;
+    			}
+    		}
+    	}
+    	return new int[] {newHomeX, newHomeY};
     }
     
     public void setY(int y){
