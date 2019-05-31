@@ -25,7 +25,7 @@ public class Soldier extends GameObject{
     		setHome(homeX + 1, homeY);
     	}
     	
-    	MoveToHome();
+    	setHome();
     }
     
     public void render(Graphics g){

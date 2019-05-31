@@ -17,14 +17,16 @@ public class Menu {
 	private int currentSelection;
 	
 	public Menu() {
-		options = new Button[4];
+		options = new Button[5];
 		options[0] = new Button("Play", 200 + 0,
 				new Font("Ariel", Font.PLAIN, 32), new Font("Ariel", Font.BOLD, 48), Color.WHITE, Color.YELLOW);
-		options[1] = new Button("Select Map", 200 + 80 * 1,
+		options[1] = new Button("Multiplayer", 200 + 60 * 1,
 				new Font("Ariel", Font.PLAIN, 32), new Font("Ariel", Font.BOLD, 48), Color.WHITE, Color.YELLOW);
-		options[2] = new Button("Options", 200 + 80 * 2,
+		options[2] = new Button("Select Map", 200 + 60 * 2,
 				new Font("Ariel", Font.PLAIN, 32), new Font("Ariel", Font.BOLD, 48), Color.WHITE, Color.YELLOW);
-		options[3] = new Button("Exit", 200 + 80 * 3,
+		options[3] = new Button("Options", 200 + 60 * 3,
+				new Font("Ariel", Font.PLAIN, 32), new Font("Ariel", Font.BOLD, 48), Color.WHITE, Color.YELLOW);
+		options[4] = new Button("Exit", 200 + 60 * 4,
 				new Font("Ariel", Font.PLAIN, 32), new Font("Ariel", Font.BOLD, 48), Color.WHITE, Color.YELLOW);
 	}
 	
@@ -46,14 +48,18 @@ public class Menu {
 				System.out.println("Selected Play");
 				break;
 			case 1:
+				Game.instance.setState(States.MULTIPLAYER.ordinal());
+				System.out.println("Selected Multiplayer Play");
+				break;
+			case 2:
 				Game.instance.setState(States.LEVEL_SELECT.ordinal());
 				System.out.println("Selected Level Picking");
 				break;
-			case 2:
+			case 3:
 				Game.instance.setState(States.OPTIONS.ordinal());
 				System.out.println("Selected Options");
 				break;
-			case 3:
+			case 4:
 				Game.instance.running = false;
 				Game.window.frame.dispatchEvent(new WindowEvent(Game.window.frame, WindowEvent.WINDOW_CLOSING));
 				break;
@@ -78,5 +84,5 @@ public class Menu {
 }
 
 enum States {
-	MENU, PLAYING, OPTIONS, LEVEL_SELECT
+	MENU, PLAYING, MULTIPLAYER, OPTIONS, LEVEL_SELECT
 }
