@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Handler implements Serializable{
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     public BaseMap map;
+    
 
     public void tick(){
     	MapControlHandler.tick();
