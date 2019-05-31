@@ -21,21 +21,20 @@ public class Game extends Canvas implements Runnable{
     private BaseMap map;
 
     private Menu menu;
-    private int state;
+    public int state;
     
     public static Handler handler;
-    //public NetworkStuff connect;
+    public NetworkStuff connect;
     
     public static Game instance;
     public static Window window;
 
     public Game(){
         handler = new Handler();
-        map = new BoringMap(8);
+        map = new BoringMap(16);
         handler.setMap(map);
         Soldier mans = new Soldier(2, 2, ID.Soldier);
         handler.addObject(mans);
-        //connect = new NetworkStuff();
         menu = new Menu();
         state = 0;
         window = new Window(WIDTH, HEIGHT, "Bad Civ", this);
@@ -82,10 +81,6 @@ public class Game extends Canvas implements Runnable{
             lastTime = now;
             if(delta >= 1){
                 tick();
-                /*
-                if (!connect.accepted) {
-                	connect.listenForSeverRequest();
-                }*/
                 KeyInput.update();
                 MouseInput.update();
                 delta--;
@@ -117,6 +112,13 @@ public class Game extends Canvas implements Runnable{
         case 1:
         	handler.tick();
             break;
+        case 2:
+        	if (connect == null) {
+        		connect = new NetworkStuff();
+        	}
+        	connect.tick();
+        	handler.tick();
+        	break;
         }
         ///////////////////////
     }
@@ -138,6 +140,7 @@ public class Game extends Canvas implements Runnable{
         	menu.render(g);
         	break;
         case 1:
+        case 2:
         	g.setColor(Color.GRAY);
             g.fillRect(0, 0, WIDTH, HEIGHT);
             handler.render(g);

@@ -1,12 +1,13 @@
 package mapStuff;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import mainBoi.Game;
 import mainBoi.GameObject;
 import mainBoi.ID;
 
-public abstract class BaseMap{
+public abstract class BaseMap implements Serializable{
 
 	public Tile[][] tiles;
 	public int gridSize;

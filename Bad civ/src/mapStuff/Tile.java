@@ -1,5 +1,7 @@
 package mapStuff;
 import java.awt.Graphics;
+import java.io.Serializable;
+
 import mainBoi.GameObject;
 import mainBoi.Handler;
 import mainBoi.Building;
@@ -12,7 +14,7 @@ import java.util.List;
 
 import Rendering.textures.Sprite;
 
-public class Tile extends GameObject {
+public class Tile extends GameObject{
 		
 	public Tile(int x, int y, ID id) {
 		

@@ -1,8 +1,10 @@
 package mainBoi;
 import java.awt.Graphics;
+import java.io.Serializable;
+
 import mapStuff.BaseMap;
 import mapStuff.Tile;
-public abstract class GameObject {
+public abstract class GameObject implements Serializable{
     
     public int x, y;
     public int homeX, homeY;
@@ -42,6 +44,11 @@ public abstract class GameObject {
 		this.home = Game.handler.map.tiles[TileX][TileY];
 		this.homeX = TileX;
 		this.homeY = TileY;
+		MoveToHome();
+    }
+    
+    public void setHome() {
+    	this.home = Game.handler.map.tiles[homeX][homeY];
 		MoveToHome();
     }
     
