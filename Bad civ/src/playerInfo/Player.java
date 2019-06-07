@@ -24,18 +24,25 @@ public class Player {
 		this(0, 0, 0, 0);
 	}
 	
-	public void calcGrowth() {
-		int growth = 0;
-		if (food > foodConsumption()) {
-			growth++;
-		}else if (food == foodConsumption()) {
-			growth = 0;
-		}else {
-			growth = -1;
-		}
-		population = population + growth;
-		food -= foodConsumption();
+	public void statCalculator() {
+		
+		food = foodIncome() - foodConsumption();
+		
 	}
+	
+//	public void calcGrowth() {
+//		int growth = 0;
+//		if (food > foodConsumption()) {
+//			growth++;
+//		}else if (food == foodConsumption()) {
+//			growth = 0;
+//		}else {
+//			growth = -1;
+//		}
+//		population = population + growth;
+//		food -= foodConsumption();
+//	}
+	
 	
 	public int foodConsumption() {
 		int foodConsumed = 0;
@@ -43,5 +50,11 @@ public class Player {
 		foodConsumed += soldiers * 20;
 		return foodConsumed;
 	}
+	
+	public int foodIncome() {
+		return -1;
+	}
+	
+	
 	
 }

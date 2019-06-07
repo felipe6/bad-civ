@@ -9,6 +9,7 @@ import Rendering.textures.Texture;
 import input.KeyInput;
 import input.MouseInput;
 import mapStuff.*;
+import playerInfo.Player;
 
 public class Game extends Canvas implements Runnable{
     
@@ -30,10 +31,11 @@ public class Game extends Canvas implements Runnable{
     public static Window window;
 
     public Game(){
-        handler = new Handler();
-        map = new BoringMap(16);
-        handler.setMap(map);
-        Soldier mans = new Soldier(2, 2, ID.Soldier);
+    	map = new BoringMap(16);
+        handler = new Handler(map, new Player(300, 100, 100, 10));
+        Castle bb = new Castle(3, 3, ID.Castle, handler.player);
+        handler.addObject(bb);
+        Soldier mans = new Soldier(2, 2, ID.Soldier, handler.player);
         handler.addObject(mans);
         menu = new Menu();
         state = 0;

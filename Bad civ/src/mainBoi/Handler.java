@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 import mapStuff.BaseMap;
 import mapStuff.MapControlHandler;
+import playerInfo.Player;
 
 import java.awt.Graphics;
 import java.io.Serializable;
@@ -10,8 +11,14 @@ import java.io.Serializable;
 public class Handler implements Serializable{
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     public BaseMap map;
+    public Player player;
     
 
+    public Handler(BaseMap map, Player player) {
+    	this.map = map;
+    	this.player = player;
+    }
+    
     public void tick(){
     	MapControlHandler.tick();
         for(int i = 0; i < object.size(); i++){

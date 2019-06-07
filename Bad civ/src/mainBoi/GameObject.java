@@ -4,14 +4,16 @@ import java.io.Serializable;
 
 import mapStuff.BaseMap;
 import mapStuff.Tile;
+import playerInfo.Player;
 public abstract class GameObject implements Serializable{
     
     public int x, y;
     public int homeX, homeY;
     public Tile home;
     public ID id;
+    public Player owner;
     
-    public GameObject(int x, int y, ID id, boolean TileCord) {
+    public GameObject(int x, int y, ID id, boolean TileCord, Player owner) {
     	if (TileCord) {
     		this.home = Game.handler.map.tiles[x][y];
     		this.homeX = x;
