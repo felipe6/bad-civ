@@ -13,7 +13,7 @@ public class TextBox extends Rectangle{
 	
 	private Font font;
 	private Color color;
-	private String text;
+	public String text;
 	private int textY;
 	private int textX;
 	

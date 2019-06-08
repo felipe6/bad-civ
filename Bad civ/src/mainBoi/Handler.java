@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 import mapStuff.BaseMap;
 import mapStuff.MapControlHandler;
+import playerInfo.UIHandler;
 
 import java.awt.Graphics;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 public class Handler implements Serializable{
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
     public BaseMap map;
+    public UIHandler UI;
     
 
     public void tick(){
@@ -21,16 +23,15 @@ public class Handler implements Serializable{
     }
     
     public void render(Graphics g){
-    	if ((Game.instance.state == 2 && Game.instance.connect != null && Game.instance.connect.accepted) || Game.instance.state == 1) {
-    		map.render(g);
-            for(int i = 0; i < object.size(); i++){
-                GameObject temp = object.get(i);
+    		
+    	map.render(g);
+    	UI.render(g);
+   		
+        for(int i = 0; i < object.size(); i++){
+            GameObject temp = object.get(i);
 
-                temp.render(g);
-            }
-    	}else {
-    		//Give message that you are waiting for new player to join server
-    	}
+            temp.render(g);
+        }
     }
     
     public void setMap(BaseMap map) {

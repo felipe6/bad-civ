@@ -48,8 +48,11 @@ public class Menu {
 				System.out.println("Selected Play");
 				break;
 			case 1:
-				Game.instance.setState(States.MULTIPLAYER.ordinal());
 				System.out.println("Selected Multiplayer Play");
+				Game.instance.render();
+				System.out.println("called render");
+				Game.instance.setState(States.MULTIPLAYER.ordinal());
+				System.out.println("Selected Multiplayer Play 2");
 				break;
 			case 2:
 				Game.instance.setState(States.LEVEL_SELECT.ordinal());

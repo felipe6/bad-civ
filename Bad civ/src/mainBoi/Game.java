@@ -9,6 +9,8 @@ import Rendering.textures.Texture;
 import input.KeyInput;
 import input.MouseInput;
 import mapStuff.*;
+import playerInfo.Player;
+import playerInfo.UIHandler;
 
 public class Game extends Canvas implements Runnable{
     
@@ -19,6 +21,7 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     public boolean running = false;
     private BaseMap map;
+    private Player player;
 
     private Menu menu;
     public int state;
@@ -33,6 +36,9 @@ public class Game extends Canvas implements Runnable{
         handler = new Handler();
         map = new BoringMap(16);
         handler.setMap(map);
+        
+        player = new Player();
+        handler.UI = new UIHandler (player);
         Soldier mans = new Soldier(2, 2, ID.Soldier);
         handler.addObject(mans);
         menu = new Menu();
@@ -116,6 +122,7 @@ public class Game extends Canvas implements Runnable{
         	if (connect == null) {
         		connect = new NetworkStuff();
         	}
+
         	connect.tick();
         	handler.tick();
         	break;
@@ -123,7 +130,7 @@ public class Game extends Canvas implements Runnable{
         ///////////////////////
     }
 
-    private void render(){
+    public void render(){
         BufferStrategy bs = this.getBufferStrategy();
         if(bs == null){
             this.createBufferStrategy(3);

@@ -68,8 +68,12 @@ public class NetworkStuff {
 
 		if (!yourTurn && !unableToCommunicate) {
 			try {
-				Game.handler.object = (LinkedList<GameObject>) dis.readObject();
-				yourTurn = true;
+				//Game.instance.render();
+				if (dis.available() != 0) {
+					System.out.println("reading object");
+					Game.handler.object = (LinkedList<GameObject>) dis.readObject();
+					yourTurn = true;
+				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -85,6 +89,7 @@ public class NetworkStuff {
 			dos = new ObjectOutputStream(socket.getOutputStream());
 			dis = new ObjectInputStream(socket.getInputStream());
 			accepted = true;
+
 			System.out.println("Client has joined");
 
 		} catch (Exception e) {
